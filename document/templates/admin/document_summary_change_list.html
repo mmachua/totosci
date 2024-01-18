@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+
+
+{% block content_title %}
+    <h1> Documents Summary </h1>
+{% endblock %}
+
+{% block body %}
+  
+
+<div class="results">
+    <table>
+
+    <thead>
+      <tr>
+        <th>
+          <div class="text">
+            <a href="#">Category</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">Total</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">Total Documents</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">
+              <strong>% Of Total Documents</strong>
+            </a>
+          </div>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for row in summary %}
+      <tr class="{% cycle 'row1' 'row2' %}">
+        <td> {{ row.document__category__name }} </td>
+        <td> {{ row.total | intcomma }} </td>
+        <td> {{ row.total_sales | default:0 | intcomma }}$ </td>
+        <td>
+          <strong>
+          {{ row.total_sales |
+              default:0 |
+              percentof:summary_total.total_sales }}
+          </strong>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+    <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
+            <td> Total </td>
+            <td> {{ summary_total.total | intcomma }} </td>
+            <td> {{ summary_total.total_sales | default:0 }}$ </td>
+            <td> 100% </td>
+        </tr>
+
+  </table>
+</div>
+
+<!-- ... -->
+
+
+
+{% endblock body %}
+
+{% block pagination %}{% endblock %}
+

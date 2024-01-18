@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}  
+
+    { {% block head %}
+    <title>{{ user.agent.business_name }}</title>
+{% endblock head %}}
+ {% block body %} 
+<!--navbar with profile element tabs user authentication is necessary for security-->
+<nav class="navbar navbar-expand text-white shadow navbar " style="background-color:black;">
+         
+          
+
+      <!-- Small button groups (default and split) -->
+<div class="btn-group">
+  <button class="btn text-white btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ user.agent.business_name }}
+  </button>
+  <div class="dropdown-menu">
+          <a class=" dropdown-item" href="#">Welcome to {{ user.agent.business_name }} </a>
+         
+
+  </div>
+</div>   
+ 
+
+</nav>
+
+
+
+<br/>
+
+  <div class="container">
+            <div class="mw-100 p-2 card  border-0" style="width: 70.5rem;">
+                <img class="border border-grey rounded-circle align-centre"  src="{% if user.agent.image %}
+                              {{ user.agent.image.url  }}{% else %}{% endif  %}
+                              " class="img-responsive" alt="no image" style="width:7rem; height:6.5rem; " alt="Card image cap">
+                <div class="card-body">
+                  <h3 class="card-title center"> <b>{{ user.agent.Business_name }}</b></h3>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.location }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.address }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.phone }}</p></p>
+                  <p class="card-text">
+              
+                  
+                  <!--<p><b>Email </b>  : {{ user.email }}</p>-->
+                  
+            
+                  
+                </div>
+              </div>
+            </div>   
+          </div>
+<!--end profile column -->
+        <div class="col-12 col-sm-6 col-md-9" style="color:rgb(21, 20, 13)">
+
+  
+
+
+
+</div>
+      </div>
+
+
+<br>
+
+
+</div>
+
+<br/>
+{% include "pagination.html" %} 
+
+
+
+
+<br>
+<hr/>
+<footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; Notehub &middot; <a href="{% url 'home:privacy' %}">Privacy</a>  <a href="{% url 'home:terms' %}">Terms</a></p>
+</footer> 
+
+
+{% endblock body %} 
+
+
+
+

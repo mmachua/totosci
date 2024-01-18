@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+
+{% block head %}
+<title>{{ user.agent.Business_name }} admin</title>
+{% endblock head %}
+
+ {% block body %}
+
+<br>
+<div class="container">
+            <div class="mw-100 p-2 card  border-0" style="width: 70.5rem;">
+                <img class="border border-grey rounded-circle align-centre"  src="{% if user.agent.image %}
+                              {{ user.agent.image.url  }}{% else %}{% endif  %}
+                              " class="img-responsive" alt="no image" style="width:7rem; height:6.5rem; " alt="Card image cap">
+                <div class="card-body">
+                  <h3 class="card-title center"> <b>{{ user.agent.Business_name }}</b></h3>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.location }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.address }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.phone }}</p></p>
+                  <p class="card-text">
+              
+                  
+                  <!--<p><b>Email </b>  : {{ user.email }}</p>-->
+                  
+            
+                  
+                </div>
+              </div>
+            </div>
+
+
+
+
+ {% endblock body %}

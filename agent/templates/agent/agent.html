@@ -1,0 +1,65 @@
+{% extends "base.html" %} 
+
+{% block head %}
+<title>{{ user.agent.business_name }}</title>
+{% endblock head %}
+
+ {% block body %}
+{% load static %}
+<br>
+<div class="container">
+            <div class="mw-100 p-2 card  border-0" style="width: 70.5rem;">
+                <img class="border border-grey rounded-circle align-centre"  src="{% if user.agent.image %}
+                              {{ user.agent.image.url  }}{% else %}{% endif  %}
+                              " class="img-responsive" alt="no image" style="width:7rem; height:6.5rem; " alt="Card image cap">
+                <div class="card-body">
+                  <h3 class="card-title center"> <b>{{ user.agent.Business_name }}</b></h3>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.location }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.address }}</p></p>
+                  <p class="card-text font-italic " style="color:red;"><p>{{ user.agent.phone }}</p></p>
+                  <p class="card-text">
+              
+                  
+                  <!--<p><b>Email </b>  : {{ user.email }}</p>-->
+                  
+            
+                  
+                </div>
+              </div>
+            </div>
+<div class="container">
+
+<div id="chat-body" class="panel panel-default">
+     <div class="panel-heading">Chat box</div>
+     <div id="msg-List-div" class="panel-body">
+          <ul id="msg-list" class="list-group">
+             {% for obj in chat %}
+                {% if obj.user == request.user %}
+                    <li class="text-right list-group-item">{{ obj.message }}</li>
+                {% else %}
+                    <li class="text-left list-group-item">{{ obj.message }}</li>
+                {% endif %}
+            {% empty %}
+                <li class="text-right list-group-item">No messages yet!</li>
+            {% endfor %}
+            <script>
+                 var chatlist = document.getElementById('msg-list-div');
+                 chatlist.scrollTop = chatlist.scrollHeight;
+            </script>
+          </ul>
+     </div>
+    </div>
+
+    <form id="chat-form" method="post" action="/agent/post/">
+        <div  id="chat-bottom" class="input-group"> 
+            <input type="file" id="chat-msg" class="form-control"/>
+            {% csrf_token %}      
+           <button class="btn btn-dark btn-sm btn-rounded my-2 my-sm-0" type="submit">Send</button>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'agent.js' %}"></script>
+
+
+ {% endblock body %}
